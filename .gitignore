@@ -1,5 +1,6 @@
 .DS_Store
-
+/cgi-bin
+/.well-known
 /node_modules
 /public/hot
 /public/storage
