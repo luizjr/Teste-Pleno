@@ -1,8 +1,11 @@
 {
+    "Home": "Página Inicial",
+    "Painel": "Painel",
     "Produtos": "Produtos",
     "Categorias": "Categorias",
     "Login": "Login",
     "Cadastro": "Cadastro",
     "Sair": "Sair",
-    "Buscar": "Buscar"
+    "Buscar": "Buscar",
+    "Cadastro de Produtos": "Cadastro de Produtos"
 }

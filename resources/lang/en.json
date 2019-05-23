@@ -1,8 +1,11 @@
 {
+    "Home": "Home",
     "Produtos": "Products",
+    "Painel": "Dashboard",
     "Categorias": "Categories",
     "Login": "Login",
     "Cadastro": "Register",
     "Sair": "Logout",
-    "Buscar": "Search"
+    "Buscar": "Search",
+    "Cadastro de Produtos": "Product Registration"
 }
