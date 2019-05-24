@@ -22,6 +22,8 @@ Route::group(['middleware' => 'language'], function () {
         return abort(404);
     });
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/produtos', 'HomeController@index')->name('produtos');
-    Route::get('/categorias', 'HomeController@index')->name('categorias');
+    Route::resources([
+        'produtos' => 'ProdutoController',
+        'categorias' => 'CategoriaController'
+    ]);
 });

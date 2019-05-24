@@ -52,10 +52,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Produtos') }}</a>
+                            <a class="nav-link" href="{{ route('produtos.index') }}">{{ __('Produtos') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Categorias') }}</a>
+                            <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('Categorias') }}</a>
                         </li>
 
                     </ul>
@@ -82,7 +82,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img src="{{ Gravatar::src(Auth::user()->email, 35) }}" style="border-radius:50%;">&nbsp; {{ Auth::user()->name }} &nbsp;<span class="caret"></span>
+                                <img src="{{ Gravatar::src(Auth::user()->email, 35) }}" class="rounded-circle">&nbsp; {{ Auth::user()->name }} &nbsp;<span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
