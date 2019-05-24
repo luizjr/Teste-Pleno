@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Produto;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class BuscaController extends Controller
 {
@@ -21,8 +24,10 @@ class BuscaController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('paginas.buscar.resultado');
+        $campo = Input::get('q');
+        $produtos = Produto::where('nome', 'LIKE', '%' . $campo . '%')->limit(25)->get();
+        return view('paginas.buscar.resultado')->with('produtos',$produtos);
     }
 }

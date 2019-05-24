@@ -23,7 +23,7 @@ Route::group(['middleware' => 'language'], function () {
     });
 
     Route::get('/home', 'ProdutoController@index')->name('home');
-    Route::get('/buscar', 'BuscaController@index')->name('home');
+    Route::any('/buscar', 'BuscaController@index')->name('buscar');
     Route::resources([
         'produtos' => 'ProdutoController',
         'categorias' => 'CategoriaController'
