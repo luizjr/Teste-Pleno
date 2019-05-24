@@ -7,5 +7,9 @@
     "Cadastro": "Register",
     "Sair": "Logout",
     "Buscar": "Search",
-    "Cadastro de Produtos": "Product Registration"
+    "Cadastro de Produtos": "Product Registration",
+    "Endereço de e-mail": "E-Mail Address",
+    "Senha": "Password",
+    "Lembre de mim": "Remember Me",
+    "Esqueceu sua senha?": "Forgot Your Password?"
 }
