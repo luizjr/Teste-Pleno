@@ -15,8 +15,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $produto->nome }}</h5>
                         <p class="card-text">{{ $produto->descricao }}</p>
-                        <p class="card-text"><a href=""><small>{{ $produto->categoria->nome }}</small></a></p>
-                        <a href="#" class="btn btn-primary">{{ __('Ver Produto') }}</a>
+                        <p class="card-text"><a href="{{ route('categorias.show',$produto->categoria->id) }}"><small>{{ $produto->categoria->nome }}</small></a></p>
+                        <a href="{{ route('produtos.show',$produto->id) }}" class="btn btn-primary">{{ __('Ver Produto') }}</a>
                     </div>
                 </div>
                 @endforeach

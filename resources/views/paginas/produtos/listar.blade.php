@@ -49,7 +49,7 @@
                                             Ações
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Ver</a>
+                                            <a class="dropdown-item" href="{{ route('produtos.show',$produto->id) }}">Ver</a>
                                             <a class="dropdown-item" href="#">Editar</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter">Excluir</a>
