@@ -9,7 +9,9 @@
             <div class="card">
 
                 <div class="card-header pt-6">
-                        <h5 class="inline">{{ __('Produtos') }}<a class="btn-sm btn btn-primary float-right" href="{{ route('produtos.create') }}">{{ __('Criar Produto') }}</a></h5>
+                    <h5 class="inline">{{ __('Produtos') }}
+                        <a class="btn-sm btn btn-primary float-right" href="{{ route('produtos.create') }}">{{ __('Criar Produto') }}</a>
+                    </h5>
                 </div>
 
                 @if ($produtos->isEmpty())
@@ -50,58 +52,63 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('produtos.show',$produto->id) }}">Ver</a>
-                                            <a class="dropdown-item" href="#">Editar</a>
+                                            <a class="dropdown-item" href="{{ route('produtos.edit',$produto->id) }}">Editar</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter">Excluir</a>
+                                            <a class="dropdown-item" href="{{ route('produtos.destroy',$produto->id) }}" data-toggle="modal" data-target="#deletaProduto{{ $produto->id }}">Excluir</a>
                                         </div>
                                     </div>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal fade" id="deletaProduto{{ $produto->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                    <h5 class="modal-title" id="{{ $produto->nome }}">Excluíndo Produto {{ $produto->nome }}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    ...
+                                                    Tem certeza que deseja <b>Excluir</b> o {{ $produto->nome }}, está ação será irreversível.
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                                                    <form action="{{ route('produtos.destroy', $produto->id) }}" method="post">
+                                                        <input type="hidden" name="_method" value="delete" />
+                                                        {!! csrf_field() !!}
+                                                        <button type="submit" class="btn btn-danger">{{ __('Excluir') }}</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div></td>
-                                </tr>
-                                @endforeach
-                            </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
 
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-end">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
 
-
-                        </div>
-
-                        @endif
 
                     </div>
+
+                    @endif
+
                 </div>
             </div>
         </div>
+    </div>
 
-        @endsection
+    @endsection
