@@ -21,8 +21,9 @@ Route::group(['middleware' => 'language'], function () {
     Route::get('logout', 'Auth\LoginController@logout', function () {
         return abort(404);
     });
-    
+
     Route::get('/home', 'ProdutoController@index')->name('home');
+    Route::get('/buscar', 'BuscaController@index')->name('home');
     Route::resources([
         'produtos' => 'ProdutoController',
         'categorias' => 'CategoriaController'

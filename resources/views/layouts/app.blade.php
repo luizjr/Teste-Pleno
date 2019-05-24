@@ -60,7 +60,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <form method="get" action="" class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="{{ __('Buscar') }}">
+                            <input class="form-control mr-sm-2" type="search" placeholder="{{ __('Buscar Produto') }}">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ __('Buscar') }}</button>
                         </form>
 
