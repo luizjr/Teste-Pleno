@@ -7,56 +7,21 @@
         <div class="col-md-8">
             <!--<div class="card text-center">-->
             <div class="card">
-                <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs pull-xs-left">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-      </li>
-    </ul>
-    <button class="btn btn-primary pull-right" style="float:right;" type="button">Do something cool</button>
-  </div>
 
-                <div class="card-header clearfix">
-      <i class="fa fa-circle pull-left"></i>
-      <div class="w-75 p-3 pull-left">{{ __('Categorias') }}</div>
-      <div class="text-xs-right pull-right">04.07.2016</div>
-    </div>
-
-                <div class="card-header container-fluid">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="w-75 p-3">{{ __('Categorias') }}</div>
-                        </div>
-                        <div class="col-md-2 float-right">
-                            <button class="btn btn-primary"
-                            (click)="onAddCategoieModal(addCategorieModal)">Add</button>
-                        </div>
-                    </div>
+                <div class="card-header pt-6">
+                    <h5 class="inline">{{ __('Categorias') }}<a class="btn-sm btn btn-primary float-right" href="{{ route('categorias.create') }}">{{ __('Criar Categoria') }}</a></h5>
                 </div>
 
-                <div class="card-header">
-                    <nav class="nav text-right">
-                        <a class="btn btn-primary" href="#">{{ __('Criar Categoria') }}</a>
-                    </nav>
-
-                    <nav class="nav float-left ">
-                        <span class="nav-link">{{ __('Categorias') }}</span>
-                    </nav>
-
-                </div>
-
+                @if ($categorias->isEmpty())
                 <div class="card-body text-center">
                     <h5 class="card-title">Nenhuma Categoria foi encontrada</h5>
                     <p class="card-text">Você pode criar uma nova categoria clicando no botão abaixo.</p>
                     <a href="{{ route('categorias.create') }}" class="btn btn-primary">{{ __('Criar Categoria') }}</a>
                 </div>
 
+                @else
+
                 <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
 
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
@@ -68,14 +33,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($categorias as $categoria)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td><!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                        Launch demo modal
-                                    </button>
+                                <td>{{ $categoria->nome }}</td>
+                                <td>{{ $categoria->descricao }}</td>
+                                <td>
+                                    {{ $categoria->produtos->count() }}
+                                </td>
+
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Ações
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Ver</a>
+                                            <a class="dropdown-item" href="#">Editar</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter">Excluir</a>
+                                        </div>
+                                    </div>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -98,6 +75,7 @@
                                         </div>
                                     </div></td>
                                 </tr>
+                                @endforeach
                             </table>
 
                             <nav aria-label="Page navigation example">
@@ -116,15 +94,12 @@
 
 
                         </div>
+
+                        @endif
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-        });
-        </script>
         @endsection

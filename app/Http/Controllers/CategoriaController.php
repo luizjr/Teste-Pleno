@@ -15,7 +15,7 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::get();
-        return view('paginas/categorias/listar', ['categorias' => $categorias]);
+        return view('paginas/categorias/listar')->with('categorias', $categorias);
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('paginas/categorias/cadastrar');
     }
 
     /**
@@ -36,7 +36,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorias = new Categoria;
+        $categorias->nome = $request->nome;
+        $categorias->descricao = $request->descricao;
+        $categorias->save();
+
+        return redirect()->route('categorias.index', $categorias->id);
     }
 
     /**
@@ -82,6 +87,8 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria = Categoria::find(1);
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 }

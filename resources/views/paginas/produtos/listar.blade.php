@@ -7,48 +7,54 @@
         <div class="col-md-8">
             <!--<div class="card text-center">-->
             <div class="card">
-                <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills">
-                        <li class="nav-item">
-                            <a class="btn btn-primary" href="#">{{ __('Criar Categoria') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-primary justify-content-end" href="#">{{ __('Criar Categoria') }}</a>
-                        </li>
-                    </ul>
+
+                <div class="card-header pt-6">
+                        <h5 class="inline">{{ __('Produtos') }}<a class="btn-sm btn btn-primary float-right" href="{{ route('produtos.create') }}">{{ __('Criar Produto') }}</a></h5>
                 </div>
 
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                @if ($produtos->isEmpty())
+                <div class="card-body text-center">
+                    <h5 class="card-title">Nenhum Produto foi encontrado</h5>
+                    <p class="card-text">Você pode criar um novo Produto clicando no botão abaixo.</p>
+                    <a href="{{ route('produtos.create') }}" class="btn btn-primary">{{ __('Criar Produto') }}</a>
                 </div>
 
+                @else
+
                 <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
 
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+                                <th class="th-sm">Unidades</th>
                                 <th class="th-sm">Nome</th>
                                 <th class="th-sm">Descrição</th>
-                                <th class="th-sm">Produtos</th>
+                                <th class="th-sm">Categoria</th>
+                                <th class="th-sm">Preço</th>
                                 <th class="th-sm">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($produtos as $produto)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td><!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                        Launch demo modal
-                                    </button>
+                                <td>{{ $produto->quantidade }}</td>
+                                <td>{{ $produto->nome }}</td>
+                                <td>{{ $produto->descricao }}</td>
+                                <td>{{ $produto->categoria->nome }}</td>
+                                <td>{{ $produto->preco }}</td>
+
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Ações
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Ver</a>
+                                            <a class="dropdown-item" href="#">Editar</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter">Excluir</a>
+                                        </div>
+                                    </div>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -71,6 +77,7 @@
                                         </div>
                                     </div></td>
                                 </tr>
+                                @endforeach
                             </table>
 
                             <nav aria-label="Page navigation example">
@@ -89,15 +96,12 @@
 
 
                         </div>
+
+                        @endif
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-        });
-        </script>
         @endsection

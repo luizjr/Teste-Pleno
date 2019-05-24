@@ -85,8 +85,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('produtos') }}">{{ __('Produtos') }}</a>
-                    <a href="{{ route('categorias') }}">{{ __('Categorias') }}</a>
+                    <a href="{{ route('produtos.index') }}">{{ __('Produtos') }}</a>
+                    <a href="{{ route('categorias.index') }}">{{ __('Categorias') }}</a>
                 </div>
             </div>
         </div>
