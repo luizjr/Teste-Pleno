@@ -101,11 +101,10 @@ class CategoriaController extends Controller
         $categoria = Categoria::findOrFail($id);
         try {
             $categoria->delete();
-            Alert::success(__('A categoria :categoria foi excluída', ['categoria' => $categoria->nome]))->persistent("Fechar");
+            Alert::success(__('A categoria :categoria foi excluída',['categoria' => $campo]));
         } catch (Illuminate\Database\QueryException $e) {
-            \Session::flash('alert-danger', __('A categoria :categoria não pôde ser excluída', ['categoria' => $categoria->nome]));
+            Alert::error(__('A categoria :categoria não pôde ser excluída',['categoria' => $campo]))->persistent("Fechar");
         }
         return redirect()->route('categorias.index');
-
     }
 }

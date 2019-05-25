@@ -28,7 +28,6 @@ class BuscaController extends Controller
     {
         $campo = Input::get('q');
         $produtos = Produto::where('nome', 'LIKE', '%' . $campo . '%')->limit(25)->get();
-        Alert::success('Success Message', 'Optional Title');
-        return view('paginas.buscar.resultado')->with('produtos',$produtos);
+        return view('paginas.buscar.resultado')->with('produtos',$produtos)->with('termo',$campo);
     }
 }
