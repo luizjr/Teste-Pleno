@@ -99,12 +99,16 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $categoria = Categoria::findOrFail($id);
-        try {
+
+        if ($categoria->produtos->isEmpty()) {
             $categoria->delete();
-            Alert::success(__('A categoria :categoria foi excluída',['categoria' => $campo]));
-        } catch (Illuminate\Database\QueryException $e) {
-            Alert::error(__('A categoria :categoria não pôde ser excluída',['categoria' => $campo]))->persistent("Fechar");
+            Alert::success(__('A :categoria foi excluída',['categoria' => $categoria->nome]));
+            return redirect()->route('categorias.index');
+        } else {
+            Alert::error(__('A :categoria não pôde ser excluída pois ainda existem produtos relacionados à ela',['categoria' => $categoria->nome]))->persistent("Fechar");
+            return redirect()->route('categorias.index');
         }
-        return redirect()->route('categorias.index');
+
+
     }
 }

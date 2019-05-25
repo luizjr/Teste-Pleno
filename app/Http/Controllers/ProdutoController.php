@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 class ProdutoController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    * Create a new controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         $this->middleware('auth');
@@ -53,15 +53,10 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $produto = new Produto;
-        $produto->nome = $request->nome;
-        $produto->descricao = $request->descricao;
-        $produto->quantidade = $request->quantidade;
-        $produto->preco = $request->preco;
-        $produto->categoria_id = $request->categoria;
+        $produto->fill($request->all());
         $produto->save();
 
-        //$produto = Produto::create($request->all());
-
+        Alert::success(__('O :produto foi criado',['produto' => $produto->nome]));
         return redirect()->route('produtos.index', $produto->id);
     }
 
@@ -73,7 +68,10 @@ class ProdutoController extends Controller
     */
     public function show(Produto $produto)
     {
-        //
+        $produto = Produto::findOrFail($produto);
+        $categorias = Categoria::get();
+
+        return view('paginas/produtos/ver')->with('produtos', $produto)->with('categorias', $categorias);
     }
 
     /**
@@ -82,9 +80,12 @@ class ProdutoController extends Controller
     * @param  \App\Produto  $produto
     * @return \Illuminate\Http\Response
     */
-    public function edit(Produto $produto)
+    public function edit($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        $categorias = Categoria::get();
+
+        return view('paginas/produtos/cadastrar')->with('produto', $produto)->with('categorias', $categorias);
     }
 
     /**
@@ -96,7 +97,9 @@ class ProdutoController extends Controller
     */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->update($request->all());
+        Alert::success(__('O :produto foi atualizado',['produto' => $produto->nome]));
+        return redirect()->route('produtos.index', $produto->id);
     }
 
     /**
@@ -109,6 +112,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::findOrFail($id);
         $produto->delete();
+        Alert::success(__('O :produto foi excluído',['produto' => $produto->nome]));
         return redirect()->route('produtos.index');
     }
 }
