@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Produto;
 use App\Categoria;
+use Alert;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class ProdutoController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
     * Display a listing of the resource.
     *
@@ -106,9 +107,8 @@ class ProdutoController extends Controller
     */
     public function destroy($id)
     {
-        $produto = Produto::find($id);
+        $produto = Produto::findOrFail($id);
         $produto->delete();
-
         return redirect()->route('produtos.index');
     }
 }
