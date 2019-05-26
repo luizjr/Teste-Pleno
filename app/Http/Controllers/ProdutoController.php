@@ -84,7 +84,6 @@ class ProdutoController extends Controller
     {
         $produto = Produto::findOrFail($id);
         $categorias = Categoria::get();
-
         return view('paginas/produtos/cadastrar')->with('produto', $produto)->with('categorias', $categorias);
     }
 
