@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -40,5 +42,7 @@ class AppServiceProvider extends ServiceProvider
             'update' => 'atualizar',
             'destroy' => 'excluir',
         ]);
+
+        Paginator::defaultView('layouts.pagination.bootstrap-4');
     }
 }

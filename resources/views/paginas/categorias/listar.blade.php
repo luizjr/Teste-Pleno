@@ -17,8 +17,8 @@
 
                 @if ($categorias->isEmpty())
                 <div class="card-body text-center">
-                    <h5 class="card-title">Nenhuma Categoria foi encontrada</h5>
-                    <p class="card-text">Você pode criar uma nova categoria clicando no botão abaixo.</p>
+                    <h5 class="card-title">{{ __('Nenhuma Categoria foi encontrada') }}</h5>
+                    <p class="card-text">{{ __('Você pode criar uma nova categoria clicando no botão abaixo.') }}</p>
                     <a href="{{ route('categorias.create') }}" class="btn btn-primary">{{ __('Criar Categoria') }}</a>
                 </div>
 
@@ -29,10 +29,10 @@
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th class="th-sm">Nome</th>
-                                <th class="th-sm">Descrição</th>
-                                <th class="th-sm">Produtos</th>
-                                <th class="th-sm">Ação</th>
+                                <th class="th-sm">{{ __('Nome') }}</th>
+                                <th class="th-sm">{{ __('Descrição') }}</th>
+                                <th class="th-sm">{{ __('Produtos') }}</th>
+                                <th class="th-sm">{{ __('Ações') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,13 +47,13 @@
                                 <td>
                                     <div class="btn-group">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Ações
+                                            {{ __('Ações') }}
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('categorias.show',$categoria->id) }}">Ver</a>
-                                            <a class="dropdown-item" href="{{ route('categorias.edit',$categoria->id) }}">Editar</a>
+                                            <a class="dropdown-item" href="{{ route('categorias.show',$categoria->id) }}">{{ __('Ver') }}</a>
+                                            <a class="dropdown-item" href="{{ route('categorias.edit',$categoria->id) }}">{{ __('Editar') }}</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ route('categorias.destroy',$categoria->id) }}" data-toggle="modal" data-target="#deletaCategoria{{ $categoria->id }}">Excluir</a>
+                                            <a class="dropdown-item" href="{{ route('categorias.destroy',$categoria->id) }}" data-toggle="modal" data-target="#deletaCategoria{{ $categoria->id }}">{{ __('Excluir') }}</a>
                                         </div>
                                     </div>
 
@@ -68,7 +68,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Tem certeza que deseja <b>Excluir</b> o {{ $categoria->nome }}, está ação será irreversível.
+                                                    {{ __('Tem certeza que deseja Excluir o :item, está ação será irreversível.',['item'=>$categoria->nome]) }}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
@@ -86,19 +86,7 @@
                             @endforeach
                         </table>
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $categorias->links() }}
 
 
                     </div>

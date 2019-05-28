@@ -27,7 +27,7 @@ class ProdutoController extends Controller
     */
     public function index()
     {
-        $produtos = Produto::with('categoria')->get();
+        $produtos = Produto::with('categoria')->paginate(10);
         return view('paginas/produtos/listar')->with('produtos', $produtos);
     }
 
@@ -38,10 +38,9 @@ class ProdutoController extends Controller
     */
     public function create()
     {
-        $produtos = Produto::get();
         $categorias = Categoria::get();
 
-        return view('paginas/produtos/cadastrar')->with('produtos', $produtos)->with('categorias', $categorias);
+        return view('paginas/produtos/CadastrarEditar')->with('categorias', $categorias);
     }
 
     /**
@@ -68,10 +67,8 @@ class ProdutoController extends Controller
     */
     public function show(Produto $produto)
     {
-        $produto = Produto::findOrFail($produto);
-        $categorias = Categoria::get();
-
-        return view('paginas/produtos/ver')->with('produtos', $produto)->with('categorias', $categorias);
+        $produto = Produto::findOrFail($produto->id);
+        return view('paginas/produtos/ver')->with('produto', $produto);
     }
 
     /**
@@ -84,7 +81,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::findOrFail($id);
         $categorias = Categoria::get();
-        return view('paginas/produtos/cadastrar')->with('produto', $produto)->with('categorias', $categorias);
+        return view('paginas/produtos/CadastrarEditar')->with('produto', $produto)->with('categorias', $categorias);
     }
 
     /**

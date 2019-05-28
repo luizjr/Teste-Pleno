@@ -32,17 +32,17 @@
                         {{ csrf_field() }}
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="nome">Nome</label>
-                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da Categoria" @if(isset($categoria)) value="{{ $categoria->nome }}"@endif>
+                                <label for="nome">{{ __('Nome') }}</label>
+                                <input type="text" class="form-control" id="nome" name="nome" placeholder="{{ __('Nome da Categoria') }}" @if(isset($categoria)) value="{{ $categoria->nome }}"@endif>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="descricao">Descrição</label>
-                                <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição do Produto" @if(isset($categoria)) value="{{ $categoria->descricao }}"@endif>
+                                <label for="descricao">{{ __('Descrição') }}</label>
+                                <input type="text" class="form-control" id="descricao" name="descricao" placeholder="{{ __('Descrição da Categoria') }}" @if(isset($categoria)) value="{{ $categoria->descricao }}"@endif>
                             </div>
                         </div>
 
-                        <a href="{{url()->previous()}}" class="btn btn-danger">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">@if(isset($categoria)) Atualizar @else  Cadastrar @endif</button>
+                        <a href="{{url()->previous()}}" class="btn btn-danger">{{ __('Cancelar') }}</a>
+                        <button type="submit" class="btn btn-primary">@if(isset($categoria)) {{ __('Atualizar') }} @else  {{ __('Cadastrar') }} @endif</button>
                     </form>
 
                 </div>

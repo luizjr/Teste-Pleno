@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Listar Produtos'))
+@section('title', __('Ver Produto'))
 
 @section('content')
 <!-- Include this after the sweet alert js file -->
@@ -13,34 +13,24 @@
 
                 <div class="card-header pt-6">
                     <h5 class="inline">{{ __('Produtos') }}
-                        <a class="btn-sm btn btn-primary float-right" href="{{ route('produtos.create') }}">{{ __('Criar Produto') }}</a>
+                        <a class="btn-sm btn btn-primary float-right" href="{{ route('produtos.index') }}">{{ __('Voltar') }}</a>
                     </h5>
                 </div>
-
-                @if ($produtos->isEmpty())
-                <div class="card-body text-center">
-                    <h5 class="card-title">Nenhum Produto foi encontrado</h5>
-                    <p class="card-text">Você pode criar um novo Produto clicando no botão abaixo.</p>
-                    <a href="{{ route('produtos.create') }}" class="btn btn-primary">{{ __('Criar Produto') }}</a>
-                </div>
-
-                @else
 
                 <div class="card-body">
 
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th class="th-sm">Unidades</th>
-                                <th class="th-sm">Nome</th>
-                                <th class="th-sm">Descrição</th>
-                                <th class="th-sm">Categoria</th>
-                                <th class="th-sm">Preço</th>
-                                <th class="th-sm">Ação</th>
+                                <th class="th-sm">{{ __('Unidades') }}</th>
+                                <th class="th-sm">{{ __('Nome') }}</th>
+                                <th class="th-sm">{{ __('Descrição') }}</th>
+                                <th class="th-sm">{{ __('Categoria') }}</th>
+                                <th class="th-sm">{{ __('Preço') }}</th>
+                                <th class="th-sm">{{ __('Ações') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($produtos as $produto)
                             <tr>
                                 <td>{{ $produto->quantidade }}</td>
                                 <td>{{ $produto->nome }}</td>
@@ -51,13 +41,12 @@
                                 <td>
                                     <div class="btn-group">
                                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Ações
+                                            {{ __('Ações') }}
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('produtos.show',$produto->id) }}">Ver</a>
-                                            <a class="dropdown-item" href="{{ route('produtos.edit',$produto->id) }}">Editar</a>
+                                            <a class="dropdown-item" href="{{ route('produtos.edit',$produto->id) }}">{{ __('Editar') }}</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ route('produtos.destroy',$produto->id) }}" data-toggle="modal" data-target="#deletaProduto{{ $produto->id }}">Excluir</a>
+                                            <a class="dropdown-item" href="{{ route('produtos.destroy',$produto->id) }}" data-toggle="modal" data-target="#deletaProduto{{ $produto->id }}">{{ __('Excluir') }}</a>
                                         </div>
                                     </div>
 
@@ -72,7 +61,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Tem certeza que deseja <b>Excluir</b> o {{ $produto->nome }}, está ação será irreversível.
+                                                    {{ __('Tem certeza que deseja Excluir o :item, está ação será irreversível.',['item'=>$produto->nome]) }}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
@@ -87,28 +76,9 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
                         </table>
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-
-
                     </div>
-
-                    @endif
-
                 </div>
             </div>
         </div>

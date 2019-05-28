@@ -25,7 +25,7 @@ class CategoriaController extends Controller
     */
     public function index()
     {
-        $categorias = Categoria::get();
+        $categorias = Categoria::paginate(10);
         return view('paginas/categorias/listar')->with('categorias', $categorias);
     }
 
@@ -36,7 +36,7 @@ class CategoriaController extends Controller
     */
     public function create()
     {
-        return view('paginas/categorias/cadastrar');
+        return view('paginas/categorias/CadastrarEditar');
     }
 
     /**
@@ -76,7 +76,7 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         $categoria = Categoria::findOrFail($categoria->id);
-        return view('paginas/categorias/cadastrar')->with('categoria', $categoria);
+        return view('paginas/categorias/CadastrarEditar')->with('categoria', $categoria);
     }
 
     /**
