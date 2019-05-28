@@ -25,7 +25,7 @@ class CategoriaController extends Controller
     */
     public function index()
     {
-        $categorias = Categoria::get();
+        $categorias = Categoria::paginate(10);
         return view('paginas/categorias/listar')->with('categorias', $categorias);
     }
 
@@ -36,7 +36,7 @@ class CategoriaController extends Controller
     */
     public function create()
     {
-        return view('paginas/categorias/cadastrar');
+        return view('paginas/categorias/CadastrarEditar');
     }
 
     /**
@@ -47,12 +47,12 @@ class CategoriaController extends Controller
     */
     public function store(Request $request)
     {
-        $categorias = new Categoria;
-        $categorias->nome = $request->nome;
-        $categorias->descricao = $request->descricao;
-        $categorias->save();
+        $categoria = new Categoria;
+        $categoria->fill($request->all());
+        $categoria->save();
 
-        return redirect()->route('categorias.index', $categorias->id);
+        Alert::success(__('A :categoria foi criada',['categoria' => $categoria->nome]));
+        return redirect()->route('categorias.index', $categoria);
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoriaController extends Controller
     */
     public function show(Categoria $categoria)
     {
-        $categoria = Categoria::findOrFail('id');
+        $categoria = Categoria::findOrFail($categoria->id);
         return view('paginas/categorias/ver', ['categoria' => $categoria]);
     }
 
@@ -75,7 +75,8 @@ class CategoriaController extends Controller
     */
     public function edit(Categoria $categoria)
     {
-        //
+        $categoria = Categoria::findOrFail($categoria->id);
+        return view('paginas/categorias/CadastrarEditar')->with('categoria', $categoria);
     }
 
     /**
@@ -87,7 +88,9 @@ class CategoriaController extends Controller
     */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $categoria->update($request->all());
+        Alert::success(__('A :categoria foi atualizada',['categoria' => $categoria->nome]));
+        return redirect()->route('categorias.index', $categoria->id);
     }
 
     /**
@@ -108,7 +111,5 @@ class CategoriaController extends Controller
             Alert::error(__('A :categoria não pôde ser excluída pois ainda existem produtos relacionados à ela',['categoria' => $categoria->nome]))->persistent("Fechar");
             return redirect()->route('categorias.index');
         }
-
-
     }
 }

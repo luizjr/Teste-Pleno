@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @if(isset($produto))
-@section('title', __('Editar Produtos'))
+@section('title', __('Editar Produto'))
 @else
-@section('title', __('Cadastrar Produtos'))
+@section('title', __('Cadastrar Produto'))
 @endif
 
 @section('content')
@@ -31,26 +31,26 @@
 
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome" @if(isset($produto)) value="{{ $produto->nome }}"@endif placeholder="Nome do Produto">
+                            <label for="nome">{{ __('Nome') }}</label>
+                            <input type="text" class="form-control" id="nome" name="nome" @if(isset($produto)) value="{{ $produto->nome }}"@endif placeholder="{{ __('Nome do Produto') }}">
                         </div>
                         <div class="form-group">
-                            <label for="descricao">Descrição</label>
-                            <input type="text" class="form-control" id="descricao" name="descricao" @if(isset($produto)) value="{{ $produto->descricao }}"@endif placeholder="Descrição do Produto">
+                            <label for="descricao">{{ __('Descrição') }}</label>
+                            <input type="text" class="form-control" id="descricao" name="descricao" @if(isset($produto)) value="{{ $produto->descricao }}"@endif placeholder="{{ __('Descrição do Produto') }}">
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="quantidade">Quantidade</label>
+                                <label for="quantidade">{{ __('Quantidade') }}</label>
                                 <input type="text" class="form-control" id="quantidade" name="quantidade" @if(isset($produto)) value="{{ $produto->quantidade }}"@endif>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="categoria_id">Categoria</label>
+                                <label for="categoria_id">{{ __('Categoria') }}</label>
                                 <select id="categoria_id" name="categoria_id" class="form-control">
                                     @if(isset($produto))
                                     <option value="{{ $produto->categoria->id }}">{{ $produto->categoria->nome }}</option>
                                     @else
-                                    <option selected>Selecionar...</option>
+                                    <option selected>{{ __('Selecionar...') }}</option>
                                     @endif
 
                                     @foreach ($categorias as $categoria)
@@ -59,12 +59,12 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="preco">Preço</label>
+                                <label for="preco">{{ __('Preço') }}</label>
                                 <input type="text" class="form-control" id="preco" name="preco" @if(isset($produto)) value="{{ $produto->preco }}"@endif>
                             </div>
                         </div>
-                        <a href="{{url()->previous()}}" class="btn btn-danger">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">@if(isset($produto)) Atualizar @else  Cadastrar @endif</button>
+                        <a href="{{url()->previous()}}" class="btn btn-danger">{{ __('Cancelar') }}</a>
+                        <button type="submit" class="btn btn-primary">@if(isset($produto)) {{ __('Atualizar') }} @else  {{ __('Cadastrar') }} @endif</button>
                     </form>
 
                 </div>
