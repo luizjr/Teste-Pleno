@@ -47,8 +47,7 @@ class CategoriaController extends Controller
     */
     public function store(Request $request)
     {
-        $categoria = new Categoria;
-        $categoria->fill($request->all());
+        $categoria = new Categoria($request->all());
         $categoria->save();
 
         Alert::success(__('A :categoria foi criada',['categoria' => $categoria->nome]));

@@ -51,8 +51,7 @@ class ProdutoController extends Controller
     */
     public function store(Request $request)
     {
-        $produto = new Produto;
-        $produto->fill($request->all());
+        $produto = new Produto($request->all());
         $produto->save();
 
         Alert::success(__('O :produto foi criado',['produto' => $produto->nome]));
