@@ -814,16 +814,16 @@
         },
         {
             "name": "luizjr/language",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/luizjr/language.git",
-                "reference": "efcfed84e4588db7d2ab21d77ddb10e21e7adf42"
+                "reference": "4d2249d9e554272d32fb0df3eb38c157fd1895ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/luizjr/language/zipball/efcfed84e4588db7d2ab21d77ddb10e21e7adf42",
-                "reference": "efcfed84e4588db7d2ab21d77ddb10e21e7adf42",
+                "url": "https://api.github.com/repos/luizjr/language/zipball/4d2249d9e554272d32fb0df3eb38c157fd1895ad",
+                "reference": "4d2249d9e554272d32fb0df3eb38c157fd1895ad",
                 "shasum": ""
             },
             "require": {
@@ -857,9 +857,9 @@
             "authors": [
                 {
                     "name": "Luiz Jr",
-                    "role": "Developer",
                     "email": "lj@luizjr.dev",
-                    "homepage": "https://luizjr.dev"
+                    "homepage": "https://luizjr.dev",
+                    "role": "Developer"
                 }
             ],
             "description": "Language switcher package for Laravel.",
@@ -868,7 +868,7 @@
                 "laravel",
                 "switcher"
             ],
-            "time": "2019-08-12T03:52:53+00:00"
+            "time": "2019-09-05T16:09:10+00:00"
         },
         {
             "name": "monolog/monolog",
