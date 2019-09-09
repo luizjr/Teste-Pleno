@@ -62,6 +62,17 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        'testing' => [
+            'driver' => 'mysql',
+            'host' => env('DB_TEST_HOST', 'localhost'),
+            'database' => env('DB_TEST_DATABASE', 'testing_db'),
+            'username' => env('DB_TEST_USERNAME', 'root'),
+            'password' => env('DB_TEST_PASSWORD', 'secret'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
