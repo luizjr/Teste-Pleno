@@ -812,16 +812,16 @@
         },
         {
             "name": "luizjr/language",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/luizjr/language.git",
-                "reference": "84537332b02dfa6462edf9cb151378a8fac2466c"
+                "reference": "c83886a26b437656f2fc7311501f5508867dc164"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/luizjr/language/zipball/84537332b02dfa6462edf9cb151378a8fac2466c",
-                "reference": "84537332b02dfa6462edf9cb151378a8fac2466c",
+                "url": "https://api.github.com/repos/luizjr/language/zipball/c83886a26b437656f2fc7311501f5508867dc164",
+                "reference": "c83886a26b437656f2fc7311501f5508867dc164",
                 "shasum": ""
             },
             "require": {
@@ -866,7 +866,7 @@
                 "laravel",
                 "switcher"
             ],
-            "time": "2019-09-09T19:01:02+00:00"
+            "time": "2019-11-02T22:27:31+00:00"
         },
         {
             "name": "monolog/monolog",
