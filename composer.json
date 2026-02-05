@@ -10,10 +10,7 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9",
-        "luizjr/language": "1.*",
-        "thomaswelton/laravel-gravatar": "^1.1",
-        "uxweb/sweet-alert": "^2.0"
+        "laravel/tinker": "^2.9"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
