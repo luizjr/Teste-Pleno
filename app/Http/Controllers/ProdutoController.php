@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Produto;
-use App\Categoria;
+use App\Models\Produto;
+use App\Models\Categoria;
 use Alert;
 
 use Illuminate\Http\Request;
