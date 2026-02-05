@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Produto;
+use App\Models\Produto;
 use Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
